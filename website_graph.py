@@ -1,5 +1,6 @@
-from typing import Dict, List
+from typing import Dict, List, Tuple
 import yaml
+import numpy as np
 from embedder import TextEmbedder
 
 
@@ -48,7 +49,7 @@ class WebsiteGraph:
             "title": title,
             "snapshot": snapshot,
             "snapshot_hex": self.text_embedder.get_text_hex_prefix(snapshot),
-            "snapshot_embedding": self.text_embedder._encode(snapshot),
+            "snapshot_embedding": self.text_embedder.encode(snapshot),
             "desc": "",
             "features": "",
             "datas": ""
@@ -84,24 +85,28 @@ class WebsiteGraph:
         if id in self.edges:
             del self.edges[id]
 
+    def compute_snapshot_similarity_matrix(self) -> Tuple[np.ndarray, List[int]]:
+        if not self.nodes:
+            return np.array([]), []
+        node_ids = sorted(self.nodes.keys())
+        embeddings = [self.nodes[node_id]["snapshot_embedding"] for node_id in node_ids]
+        similarity_matrix = self.text_embedder.similarity_matrix(embeddings)
+        return similarity_matrix, node_ids
+
 
 if __name__ == "__main__":
     graph = WebsiteGraph(scope="example.com")
     node1_id = graph.add_node(
         url="http://example.com/page1",
         title="Page 1",
-        desc="This is page 1",
-        snapshot="abcdef123456",
-        features=["feature1", "feature2"],
-        datas=["data1", "data2"]
+        snapshot="你好"
     )
     node2_id = graph.add_node(
         url="http://example.com/page2",
         title="Page 2",
-        desc="This is page 2",
-        snapshot="123456abcdef",
-        features=["feature3"],
-        datas=["data3"]
+        snapshot="你好"
     )
     graph.update_edge(from_id=node1_id, to_id=node2_id, operation="link")
     print(graph.to_yaml())
+
+    print(graph.compute_snapshot_similarity_matrix())

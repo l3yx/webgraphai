@@ -30,7 +30,7 @@ class TextEmbedder:
             chunks.append(chunk_text)
         return chunks
 
-    def _encode(self, text: str) -> np.ndarray:
+    def encode(self, text: str) -> np.ndarray:
         chunks = self._chunk_text(text)
         if len(chunks) == 1:
             return self.model.encode(chunks[0], normalize_embeddings=True)
@@ -45,16 +45,27 @@ class TextEmbedder:
             return pooled
         return pooled / norm
 
-    def similarity_matrix(self, texts: List[str]) -> np.ndarray:
-        embeddings = np.array([self._encode(text) for text in texts])
+    def similarity_matrix(self, texts: List[str] | List[np.ndarray]) -> np.ndarray:
+        if not texts:
+            return np.array([])
+        if isinstance(texts[0], str):
+            embeddings = np.array([self.encode(text) for text in texts])
+        else:
+            embeddings = np.array(texts)
         sim = embeddings @ embeddings.T
         return np.clip(sim, -1.0, 1.0)
 
-    def similarity_to_many(self, query: str, texts: List[str]) -> np.ndarray:
+    def similarity_to_many(self, query: str | np.ndarray, texts: List[str] | List[np.ndarray]) -> np.ndarray:
         if not texts:
             return np.array([])
-        query_emb = self._encode(query)
-        text_embeddings = np.array([self._encode(t) for t in texts])
+        if isinstance(query, str):
+            query_emb = self.encode(query)
+        else:
+            query_emb = query
+        if isinstance(texts[0], str):
+            text_embeddings = np.array([self.encode(t) for t in texts])
+        else:
+            text_embeddings = np.array(texts)
         scores = text_embeddings @ query_emb
         return np.clip(scores, -1.0, 1.0)
 
