@@ -93,6 +93,26 @@ class WebsiteGraph:
         similarity_matrix = self.text_embedder.similarity_matrix(embeddings)
         return similarity_matrix, node_ids
 
+    def similarity_matrix_to_table(self) -> str:
+        similarity_matrix, node_ids = self.compute_snapshot_similarity_matrix()
+        if len(node_ids) == 0:
+            return "No nodes available"
+        header = "| Node |"
+        for node_id in node_ids:
+            header += f" {node_id} |"
+        separator = "|------|"
+        for _ in node_ids:
+            separator += "------|"
+        rows = []
+        for i, node_id in enumerate(node_ids):
+            row = f"| {node_id} |"
+            for j in range(len(node_ids)):
+                sim_value = similarity_matrix[i, j]
+                row += f" {sim_value:.3f} |"
+            rows.append(row)
+        table = "\n".join([header, separator] + rows)
+        return table
+
 
 if __name__ == "__main__":
     graph = WebsiteGraph(scope="example.com")
@@ -106,7 +126,13 @@ if __name__ == "__main__":
         title="Page 2",
         snapshot="你好"
     )
+    node3_id = graph.add_node(
+        url="http://example.com/page3",
+        title="Page 3",
+        snapshot="Hello world"
+    )
     graph.update_edge(from_id=node1_id, to_id=node2_id, operation="link")
     print(graph.to_yaml())
 
-    print(graph.compute_snapshot_similarity_matrix())
+    print("\n")
+    print(graph.similarity_matrix_to_table())
