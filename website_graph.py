@@ -161,4 +161,4 @@ if __name__ == "__main__":
     print(graph.similarity_matrix_to_table())
 
     print("\n=== Query Similarity ===")
-    print(graph.query_similarity_to_table("Test"))
+    print(graph.query_similarity_to_table("Hello worl"))
