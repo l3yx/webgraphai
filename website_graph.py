@@ -51,8 +51,8 @@ class WebsiteGraph:
             "snapshot_hex": self.text_embedder.get_text_hex_prefix(snapshot),
             "snapshot_embedding": self.text_embedder.encode(snapshot),
             "desc": "",
-            "features": "",
-            "datas": ""
+            "features": [],
+            "datas": []
         }
         self.nodes[id] = node
         return id
