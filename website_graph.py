@@ -97,18 +97,20 @@ class WebsiteGraph:
         similarity_matrix, node_ids = self.compute_snapshot_similarity_matrix()
         if len(node_ids) == 0:
             return "No nodes available"
-        header = "| Node |"
+        max_id_len = max(len(str(node_id)) for node_id in node_ids)
+        col_width = max(max_id_len, 5)
+        header = f"| {'Node':<{col_width}} |"
         for node_id in node_ids:
-            header += f" {node_id} |"
-        separator = "|------|"
+            header += f" {str(node_id):>{col_width}} |"
+        separator = f"|{'-' * (col_width + 2)}|"
         for _ in node_ids:
-            separator += "------|"
+            separator += f"{'-' * (col_width + 2)}|"
         rows = []
         for i, node_id in enumerate(node_ids):
-            row = f"| {node_id} |"
+            row = f"| {str(node_id):<{col_width}} |"
             for j in range(len(node_ids)):
                 sim_value = similarity_matrix[i, j]
-                row += f" {sim_value:.3f} |"
+                row += f" {sim_value:>{col_width}.3f} |"
             rows.append(row)
         table = "\n".join([header, separator] + rows)
         return table
