@@ -25,8 +25,8 @@ class WebsiteGraph:
             return node_copy
         return {
             "metadata": {
-            "scope": self.scope,
-            "summary": self.summary
+                "scope": self.scope,
+                "summary": self.summary
             },
             "nodes": [filter_node(node) for node in self.nodes.values()],
             "edges": list(self.edges.values())
