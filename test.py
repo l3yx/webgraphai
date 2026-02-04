@@ -1,0 +1,501 @@
+from embedder import TextEmbedder
+
+text_embedder = TextEmbedder()
+
+sentences = [
+    '''- generic [ref=e2]:
+  - heading "Example Domain" [level=1] [ref=e3]
+  - paragraph [ref=e4]: This domain is for use in documentation examples without needing permission. Avoid use in operations.
+  - paragraph [ref=e5]:
+    - link "Learn more" [ref=e6] [cursor=pointer]:
+      - /url: https://iana.org/domains/example''',
+
+    '''- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic:
+      - generic [ref=e6]:
+        - link "新闻" [ref=e7] [cursor=pointer]:
+          - /url: http://news.baidu.com
+        - link "hao123" [ref=e8] [cursor=pointer]:
+          - /url: https://www.hao123.com?src=from_pc
+        - link "地图" [ref=e9] [cursor=pointer]:
+          - /url: http://map.baidu.com
+        - link "贴吧" [ref=e10] [cursor=pointer]:
+          - /url: http://tieba.baidu.com/
+        - link "视频" [ref=e11] [cursor=pointer]:
+          - /url: https://haokan.baidu.com/?sfrom=baidu-top
+        - link "图片" [ref=e12] [cursor=pointer]:
+          - /url: http://image.baidu.com/
+        - link "网盘" [ref=e13] [cursor=pointer]:
+          - /url: https://pan.baidu.com?from=1026962h
+        - link "文库" [ref=e14] [cursor=pointer]:
+          - /url: https://wenku.baidu.com/?fr=bdpcindex
+        - link [ref=e15] [cursor=pointer]:
+          - /url: https://chat.baidu.com/search?isShowHello=1&pd=csaitab&setype=csaitab&extParamsJson=%7B%22enter_type%22%3A%22home_tab%22%7D
+          - img [ref=e16]
+        - link "更多" [ref=e18] [cursor=pointer]:
+          - /url: http://www.baidu.com/more/
+      - generic [ref=e19]:
+        - generic [ref=e20] [cursor=pointer]: 设置
+        - link "登录" [ref=e21] [cursor=pointer]:
+          - /url: https://passport.baidu.com/v2/?login&tpl=mn&u=http%3A%2F%2Fwww.baidu.com%2F&sms=5
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - img [ref=e26]
+        - generic:
+          - link "点击一下，了解更多":
+            - /url: //www.baidu.com/s?wd=%E7%99%BE%E5%BA%A6%E7%83%AD%E6%90%9C&sa=ire_dl_gh_logo_texing&rsv_dl=igh_logo_pcs
+      - generic [ref=e31]:
+        - generic [ref=e34]:
+          - textbox "外交部谈中方加入核裁军谈判" [active] [ref=e36]
+          - generic [ref=e37]:
+            - generic [ref=e40] [cursor=pointer]:
+              - generic [ref=e42]:
+                - img [ref=e44]
+                - img [ref=e45]
+              - generic [ref=e47]: 点我去文心助手回答，已接入DeepSeek、文心4.5，深入思考提供更优质答案，快来试试吧
+            - generic [ref=e48]:
+              - generic [ref=e49]:
+                - img [ref=e57] [cursor=pointer]
+                - generic [ref=e60]:
+                  - img [ref=e64] [cursor=pointer]
+                  - img [ref=e69] [cursor=pointer]
+              - button "百度一下" [ref=e73] [cursor=pointer]
+        - generic [ref=e75]:
+          - link "复杂问题就找文心助手 👉 立即体验" [ref=e77] [cursor=pointer]:
+            - /url: https://chat.baidu.com/search?extParams=%7B%22enter_type%22%3A%22home_operate%22%7D&isShowHello=1
+            - generic [ref=e79]: 复杂问题就找文心助手 👉
+            - generic [ref=e80]:
+              - generic [ref=e81]: 立即体验
+              - img [ref=e82]
+          - generic [ref=e84] [cursor=pointer]: AI生图
+          - generic [ref=e86] [cursor=pointer]: AI写作
+          - generic [ref=e88] [cursor=pointer]: AI翻译
+          - generic [ref=e90] [cursor=pointer]: AI编程
+          - generic [ref=e92] [cursor=pointer]:
+            - img [ref=e93]
+            - text: 更多
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - link "百度热搜":
+            - /url: https://top.baidu.com/board?platform=pc&sa=pcindex_entry
+            - generic "百度热搜" [ref=e98] [cursor=pointer]: 
+          - generic [ref=e99] [cursor=pointer]:
+            - generic [ref=e100]: 
+            - text: 换一换
+        - list:
+          - listitem [ref=e101]:
+            - link " “开放的大门只会越开越大”" [ref=e102] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E2%80%9C%E5%BC%80%E6%94%BE%E7%9A%84%E5%A4%A7%E9%97%A8%E5%8F%AA%E4%BC%9A%E8%B6%8A%E5%BC%80%E8%B6%8A%E5%A4%A7%E2%80%9D&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e103]: 
+              - text: “开放的大门只会越开越大”
+          - listitem [ref=e105]:
+            - link "5 周生生再次回应足金挂坠检出铁银钯" [ref=e106] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E5%91%A8%E7%94%9F%E7%94%9F%E5%86%8D%E6%AC%A1%E5%9B%9E%E5%BA%94%E8%B6%B3%E9%87%91%E6%8C%82%E5%9D%A0%E6%A3%80%E5%87%BA%E9%93%81%E9%93%B6%E9%92%AF&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e107]: "5"
+              - text: 周生生再次回应足金挂坠检出铁银钯
+            - generic [ref=e108]: 热
+          - listitem [ref=e109]:
+            - link "1 央行：将开展8000亿元买断式逆回购" [ref=e110] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E5%A4%AE%E8%A1%8C%EF%BC%9A%E5%B0%86%E5%BC%80%E5%B1%958000%E4%BA%BF%E5%85%83%E4%B9%B0%E6%96%AD%E5%BC%8F%E9%80%86%E5%9B%9E%E8%B4%AD&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e111]: "1"
+              - text: 央行：将开展8000亿元买断式逆回购
+            - generic [ref=e112]: 热
+          - listitem [ref=e113]:
+            - link "6 警方通报“夫妻吃娃娃菜中毒”" [ref=e114] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E8%AD%A6%E6%96%B9%E9%80%9A%E6%8A%A5%E2%80%9C%E5%A4%AB%E5%A6%BB%E5%90%83%E5%A8%83%E5%A8%83%E8%8F%9C%E4%B8%AD%E6%AF%92%E2%80%9D&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e115]: "6"
+              - text: 警方通报“夫妻吃娃娃菜中毒”
+            - generic [ref=e116]: 新
+          - listitem [ref=e117]:
+            - link "2 为什么大型商超很少卖国产香蕉" [ref=e118] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E4%B8%BA%E4%BB%80%E4%B9%88%E5%A4%A7%E5%9E%8B%E5%95%86%E8%B6%85%E5%BE%88%E5%B0%91%E5%8D%96%E5%9B%BD%E4%BA%A7%E9%A6%99%E8%95%89&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e119]: "2"
+              - text: 为什么大型商超很少卖国产香蕉
+            - generic [ref=e120]: 新
+          - listitem [ref=e121]:
+            - link "7 “我叫张凤英 我不叫王张氏”" [ref=e122] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E2%80%9C%E6%88%91%E5%8F%AB%E5%BC%A0%E5%87%A4%E8%8B%B1+%E6%88%91%E4%B8%8D%E5%8F%AB%E7%8E%8B%E5%BC%A0%E6%B0%8F%E2%80%9D&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e123]: "7"
+              - text: “我叫张凤英 我不叫王张氏”
+          - listitem [ref=e125]:
+            - link "3 中国电力有多强" [ref=e126] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E4%B8%AD%E5%9B%BD%E7%94%B5%E5%8A%9B%E6%9C%89%E5%A4%9A%E5%BC%BA&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e127]: "3"
+              - text: 中国电力有多强
+          - listitem [ref=e129]:
+            - link "8 担心父亲继母争房产 30岁男子立遗嘱" [ref=e130] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E6%8B%85%E5%BF%83%E7%88%B6%E4%BA%B2%E7%BB%A7%E6%AF%8D%E4%BA%89%E6%88%BF%E4%BA%A7+30%E5%B2%81%E7%94%B7%E5%AD%90%E7%AB%8B%E9%81%97%E5%98%B1&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e131]: "8"
+              - text: 担心父亲继母争房产 30岁男子立遗嘱
+            - generic [ref=e132]: 热
+          - listitem [ref=e133]:
+            - link "4 即使穿着便衣 依旧气场全开" [ref=e134] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E5%8D%B3%E4%BD%BF%E7%A9%BF%E7%9D%80%E4%BE%BF%E8%A1%A3+%E4%BE%9D%E6%97%A7%E6%B0%94%E5%9C%BA%E5%85%A8%E5%BC%80&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e135]: "4"
+              - text: 即使穿着便衣 依旧气场全开
+            - generic [ref=e136]: 新
+          - listitem [ref=e137]:
+            - link "9 2026年中央一号文件发布" [ref=e138] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=2026%E5%B9%B4%E4%B8%AD%E5%A4%AE%E4%B8%80%E5%8F%B7%E6%96%87%E4%BB%B6%E5%8F%91%E5%B8%83&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e139]: "9"
+              - text: 2026年中央一号文件发布
+    - generic [ref=e142]:
+      - paragraph [ref=e143]:
+        - link "关于百度" [ref=e144] [cursor=pointer]:
+          - /url: //home.baidu.com
+      - paragraph [ref=e145]:
+        - link "About Baidu" [ref=e146] [cursor=pointer]:
+          - /url: http://ir.baidu.com
+      - paragraph [ref=e147]:
+        - link "使用百度前必读" [ref=e148] [cursor=pointer]:
+          - /url: //www.baidu.com/duty
+      - paragraph [ref=e149]:
+        - link "帮助中心" [ref=e150] [cursor=pointer]:
+          - /url: https://help.baidu.com/question?prod_id=1
+      - paragraph [ref=e151]:
+        - link "企业推广" [ref=e152] [cursor=pointer]:
+          - /url: https://e.baidu.com/?refer=1271
+      - paragraph [ref=e153]:
+        - link "京公网安备11000002000001号" [ref=e154] [cursor=pointer]:
+          - /url: http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002000001
+      - paragraph [ref=e155]:
+        - link "京ICP证030173号" [ref=e156] [cursor=pointer]:
+          - /url: https://beian.miit.gov.cn
+      - paragraph [ref=e157]: 互联网新闻信息服务许可证11220180008
+      - generic [ref=e158]: 
+      - generic [ref=e159]: 
+  - generic [ref=e160]:
+    - generic:
+      - generic:
+        - generic:
+          - img
+    - img [ref=e165] [cursor=pointer]''',
+
+    '''- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic:
+      - generic [ref=e6]:
+        - link "新闻" [ref=e7] [cursor=pointer]:
+          - /url: http://news.baidu.com
+        - link "hao123" [ref=e8] [cursor=pointer]:
+          - /url: https://www.hao123.com?src=from_pc
+        - link "地图" [ref=e9] [cursor=pointer]:
+          - /url: http://map.baidu.com
+        - link "贴吧" [ref=e10] [cursor=pointer]:
+          - /url: http://tieba.baidu.com/
+        - link "视频" [ref=e11] [cursor=pointer]:
+          - /url: https://haokan.baidu.com/?sfrom=baidu-top
+        - link "图片" [ref=e12] [cursor=pointer]:
+          - /url: http://image.baidu.com/
+        - link "网盘" [ref=e13] [cursor=pointer]:
+          - /url: https://pan.baidu.com?from=1026962h
+        - link "文库" [ref=e14] [cursor=pointer]:
+          - /url: https://wenku.baidu.com/?fr=bdpcindex
+        - link [ref=e15] [cursor=pointer]:
+          - /url: https://chat.baidu.com/search?isShowHello=1&pd=csaitab&setype=csaitab&extParamsJson=%7B%22enter_type%22%3A%22home_tab%22%7D
+          - img [ref=e16]
+        - link "更多" [ref=e18] [cursor=pointer]:
+          - /url: http://www.baidu.com/more/
+      - generic [ref=e19]:
+        - generic [ref=e20] [cursor=pointer]: 设置
+        - link "登录" [ref=e21] [cursor=pointer]:
+          - /url: https://passport.baidu.com/v2/?login&tpl=mn&u=http%3A%2F%2Fwww.baidu.com%2F&sms=5
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - img [ref=e26]
+        - generic:
+          - link "点击一下，了解更多":
+            - /url: //www.baidu.com/s?wd=%E7%99%BE%E5%BA%A6%E7%83%AD%E6%90%9C&sa=ire_dl_gh_logo_texing&rsv_dl=igh_logo_pcs
+      - generic [ref=e31]:
+        - generic [ref=e34]:
+          - textbox "外交部谈中方加入核裁军谈判" [active] [ref=e36]
+          - generic [ref=e37]:
+            - generic [ref=e40] [cursor=pointer]:
+              - generic [ref=e42]:
+                - img [ref=e44]
+                - img [ref=e45]
+              - generic [ref=e47]: 点我去文心助手回答，已接入DeepSeek、文心4.5，深入思考提供更优质答案，快来试试吧
+            - generic [ref=e48]:
+              - generic [ref=e49]:
+                - img [ref=e57] [cursor=pointer]
+                - generic [ref=e60]:
+                  - img [ref=e64] [cursor=pointer]
+                  - img [ref=e69] [cursor=pointer]
+              - button "百度一下" [ref=e73] [cursor=pointer]
+        - generic [ref=e75]:
+          - link "复杂问题就找文心助手 👉 立即体验" [ref=e77] [cursor=pointer]:
+            - /url: https://chat.baidu.com/search?extParams=%7B%22enter_type%22%3A%22home_operate%22%7D&isShowHello=1
+            - generic [ref=e79]: 复杂问题就找文心助手 👉
+            - generic [ref=e80]:
+              - generic [ref=e81]: 立即体验
+              - img [ref=e82]
+          - generic [ref=e84] [cursor=pointer]: AI生图
+          - generic [ref=e86] [cursor=pointer]: AI写作
+          - generic [ref=e88] [cursor=pointer]: AI翻译
+          - generic [ref=e90] [cursor=pointer]: AI编程
+          - generic [ref=e92] [cursor=pointer]:
+            - img [ref=e93]
+            - text: 更多
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - link "百度热搜":
+            - /url: https://top.baidu.com/board?platform=pc&sa=pcindex_entry
+            - generic "百度热搜" [ref=e98] [cursor=pointer]: 
+          - generic [ref=e99] [cursor=pointer]:
+            - generic [ref=e100]: 
+            - text: 换一换
+        - list:
+          - listitem [ref=e101]:
+            - link " “开放的大门只会越开越大”" [ref=e102] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E2%80%9C%E5%BC%80%E6%94%BE%E7%9A%84%E5%A4%A7%E9%97%A8%E5%8F%AA%E4%BC%9A%E8%B6%8A%E5%BC%80%E8%B6%8A%E5%A4%A7%E2%80%9D&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e103]: 
+              - text: “开放的大门只会越开越大”
+          - listitem [ref=e105]:
+            - link "5 周生生再次回应足金挂坠检出铁银钯" [ref=e106] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E5%91%A8%E7%94%9F%E7%94%9F%E5%86%8D%E6%AC%A1%E5%9B%9E%E5%BA%94%E8%B6%B3%E9%87%91%E6%8C%82%E5%9D%A0%E6%A3%80%E5%87%BA%E9%93%81%E9%93%B6%E9%92%AF&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e107]: "5"
+              - text: 周生生再次回应足金挂坠检出铁银钯
+            - generic [ref=e108]: 热
+          - listitem [ref=e109]:
+            - link "1 央行：将开展8000亿元买断式逆回购" [ref=e110] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E5%A4%AE%E8%A1%8C%EF%BC%9A%E5%B0%86%E5%BC%80%E5%B1%958000%E4%BA%BF%E5%85%83%E4%B9%B0%E6%96%AD%E5%BC%8F%E9%80%86%E5%9B%9E%E8%B4%AD&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e111]: "1"
+              - text: 央行：将开展8000亿元买断式逆回购
+            - generic [ref=e112]: 热
+          - listitem [ref=e113]:
+            - link "6 警方通报“夫妻吃娃娃菜中毒”" [ref=e114] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E8%AD%A6%E6%96%B9%E9%80%9A%E6%8A%A5%E2%80%9C%E5%A4%AB%E5%A6%BB%E5%90%83%E5%A8%83%E5%A8%83%E8%8F%9C%E4%B8%AD%E6%AF%92%E2%80%9D&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e115]: "6"
+              - text: 警方通报“夫妻吃娃娃菜中毒”
+            - generic [ref=e116]: 新
+          - listitem [ref=e117]:
+            - link "2 为什么大型商超很少卖国产香蕉" [ref=e118] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E4%B8%BA%E4%BB%80%E4%B9%88%E5%A4%A7%E5%9E%8B%E5%95%86%E8%B6%85%E5%BE%88%E5%B0%91%E5%8D%96%E5%9B%BD%E4%BA%A7%E9%A6%99%E8%95%89&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e119]: "2"
+              - text: 为什么大型商超很少卖国产香蕉
+            - generic [ref=e120]: 新
+          - listitem [ref=e121]:
+            - link "7 “我叫张凤英 我不叫王张氏”" [ref=e122] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E2%80%9C%E6%88%91%E5%8F%AB%E5%BC%A0%E5%87%A4%E8%8B%B1+%E6%88%91%E4%B8%8D%E5%8F%AB%E7%8E%8B%E5%BC%A0%E6%B0%8F%E2%80%9D&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e123]: "7"
+              - text: “我叫张凤英 我不叫王张氏”
+          - listitem [ref=e125]:
+            - link "3 中国电力有多强" [ref=e126] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E4%B8%AD%E5%9B%BD%E7%94%B5%E5%8A%9B%E6%9C%89%E5%A4%9A%E5%BC%BA&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e127]: "3"
+              - text: 中国电力有多强
+          - listitem [ref=e129]:
+            - link "8 担心父亲继母争房产 30岁男子立遗嘱" [ref=e130] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E6%8B%85%E5%BF%83%E7%88%B6%E4%BA%B2%E7%BB%A7%E6%AF%8D%E4%BA%89%E6%88%BF%E4%BA%A7+30%E5%B2%81%E7%94%B7%E5%AD%90%E7%AB%8B%E9%81%97%E5%98%B1&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e131]: "8"
+              - text: 担心父亲继母争房产 30岁男子立遗嘱
+            - generic [ref=e132]: 热
+          - listitem [ref=e133]:
+            - link "4 即使穿着便衣 依旧气场全开" [ref=e134] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E5%8D%B3%E4%BD%BF%E7%A9%BF%E7%9D%80%E4%BE%BF%E8%A1%A3+%E4%BE%9D%E6%97%A7%E6%B0%94%E5%9C%BA%E5%85%A8%E5%BC%80&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e135]: "4"
+              - text: 即使穿着便衣 依旧气场全开
+            - generic [ref=e136]: 新
+          - listitem [ref=e137]:
+            - link "9 2026年中央一号文件发布" [ref=e138] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=2026%E5%B9%B4%E4%B8%AD%E5%A4%AE%E4%B8%80%E5%8F%B7%E6%96%87%E4%BB%B6%E5%8F%91%E5%B8%83&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e139]: "9"
+              - text: 2026年中央一号文件发布
+    - generic [ref=e142]:
+      - paragraph [ref=e143]:
+        - link "关于百度" [ref=e144] [cursor=pointer]:
+          - /url: //home.baidu.com
+      - paragraph [ref=e145]:
+        - link "About Baidu" [ref=e146] [cursor=pointer]:
+          - /url: http://ir.baidu.com
+      - paragraph [ref=e147]:
+        - link "使用百度前必读" [ref=e148] [cursor=pointer]:
+          - /url: //www.baidu.com/duty
+      - paragraph [ref=e149]:
+        - link "帮助中心" [ref=e150] [cursor=pointer]:
+          - /url: https://help.baidu.com/question?prod_id=1
+      - paragraph [ref=e151]:
+        - link "企业推广" [ref=e152] [cursor=pointer]:
+          - /url: https://e.baidu.com/?refer=1271
+      - paragraph [ref=e153]:
+        - link "京公网安备11000002000001号" [ref=e154] [cursor=pointer]:
+          - /url: http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002000001
+      - paragraph [ref=e155]:
+        - link "京ICP证030173号" [ref=e156] [cursor=pointer]:
+          - /url: https://beian.miit.gov.cn
+      - paragraph [ref=e157]: 互联网新闻信息服务许可证11220180008
+      - generic [ref=e158]: 
+      - generic [ref=e159]: 
+  - generic [ref=e160]:
+    - generic:
+      - generic:
+        - generic:
+          - img
+    - img [ref=e165] [cursor=pointer]''',
+
+    '''- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic:
+      - generic [ref=e6]:
+        - link "新闻" [ref=e7] [cursor=pointer]:
+          - /url: http://news.baidu.com
+        - link "hao123" [ref=e8] [cursor=pointer]:
+          - /url: https://www.hao123.com?src=from_pc
+        - link "地图" [ref=e9] [cursor=pointer]:
+          - /url: http://map.baidu.com
+        - link "贴吧" [ref=e10] [cursor=pointer]:
+          - /url: http://tieba.baidu.com/
+        - link "视频" [ref=e11] [cursor=pointer]:
+          - /url: https://haokan.baidu.com/?sfrom=baidu-top
+        - link "图片" [ref=e12] [cursor=pointer]:
+          - /url: http://image.baidu.com/
+        - link "网盘" [ref=e13] [cursor=pointer]:
+          - /url: https://pan.baidu.com?from=1026962h
+        - link "文库" [ref=e14] [cursor=pointer]:
+          - /url: https://wenku.baidu.com/?fr=bdpcindex
+        - link [ref=e15] [cursor=pointer]:
+          - /url: https://chat.baidu.com/search?isShowHello=1&pd=csaitab&setype=csaitab&extParamsJson=%7B%22enter_type%22%3A%22home_tab%22%7D
+          - img [ref=e16]
+        - link "更多" [ref=e18] [cursor=pointer]:
+          - /url: http://www.baidu.com/more/
+      - generic [ref=e19]:
+        - generic [ref=e20] [cursor=pointer]: 设置
+        - link "登录" [ref=e21] [cursor=pointer]:
+          - /url: https://passport.baidu.com/v2/?login&tpl=mn&u=http%3A%2F%2Fwww.baidu.com%2F&sms=5
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - img [ref=e26]
+        - generic:
+          - link "点击一下，了解更多":
+            - /url: //www.baidu.com/s?wd=%E7%99%BE%E5%BA%A6%E7%83%AD%E6%90%9C&sa=ire_dl_gh_logo_texing&rsv_dl=igh_logo_pcs
+      - generic [ref=e31]:
+        - generic [ref=e34]:
+          - textbox "外交部谈中方加入核裁军谈判" [active] [ref=e36]
+          - generic [ref=e37]:
+            - generic [ref=e40] [cursor=pointer]:
+              - generic [ref=e42]:
+                - img [ref=e44]
+                - img [ref=e45]
+              - generic [ref=e47]: 点我去文心助手回答，已接入DeepSeek、文心4.5，深入思考提供更优质答案，快来试试吧
+            - generic [ref=e48]:
+              - generic [ref=e49]:
+                - img [ref=e57] [cursor=pointer]
+                - generic [ref=e60]:
+                  - img [ref=e64] [cursor=pointer]
+                  - img [ref=e69] [cursor=pointer]
+              - button "百度一下" [ref=e73] [cursor=pointer]
+        - generic [ref=e75]:
+          - link "复杂问题就找文心助手 👉 立即体验" [ref=e77] [cursor=pointer]:
+            - /url: https://chat.baidu.com/search?extParams=%7B%22enter_type%22%3A%22home_operate%22%7D&isShowHello=1
+            - generic [ref=e79]: 复杂问题就找文心助手 👉
+            - generic [ref=e80]:
+              - generic [ref=e81]: 立即体验
+              - img [ref=e82]
+          - generic [ref=e84] [cursor=pointer]: AI生图
+          - generic [ref=e86] [cursor=pointer]: AI写作
+          - generic [ref=e88] [cursor=pointer]: AI翻译
+          - generic [ref=e90] [cursor=pointer]: AI编程
+          - generic [ref=e92] [cursor=pointer]:
+            - img [ref=e93]
+            - text: 更多
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - link "百度热搜":
+            - /url: https://top.baidu.com/board?platform=pc&sa=pcindex_entry
+            - generic "百度热搜" [ref=e98] [cursor=pointer]: 
+          - generic [ref=e99] [cursor=pointer]:
+            - generic [ref=e100]: 
+            - text: 换一换
+        - list:
+          - listitem [ref=e101]:
+            - link " “开放的大门只会越开越大”" [ref=e102] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E2%80%9C%E5%BC%80%E6%94%BE%E7%9A%84%E5%A4%A7%E9%97%A8%E5%8F%AA%E4%BC%9A%E8%B6%8A%E5%BC%80%E8%B6%8A%E5%A4%A7%E2%80%9D&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e103]: 
+              - text: “开放的大门只会越开越大”
+          - listitem [ref=e105]:
+            - link "5 周生生再次回应足金挂坠检出铁银钯" [ref=e106] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E5%91%A8%E7%94%9F%E7%94%9F%E5%86%8D%E6%AC%A1%E5%9B%9E%E5%BA%94%E8%B6%B3%E9%87%91%E6%8C%82%E5%9D%A0%E6%A3%80%E5%87%BA%E9%93%81%E9%93%B6%E9%92%AF&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e107]: "5"
+              - text: 周生生再次回应足金挂坠检出铁银钯
+            - generic [ref=e108]: 热
+          - listitem [ref=e109]:
+            - link "1 央行：将开展8000亿元买断式逆回购" [ref=e110] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E5%A4%AE%E8%A1%8C%EF%BC%9A%E5%B0%86%E5%BC%80%E5%B1%958000%E4%BA%BF%E5%85%83%E4%B9%B0%E6%96%AD%E5%BC%8F%E9%80%86%E5%9B%9E%E8%B4%AD&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e111]: "1"
+              - text: 央行：将开展8000亿元买断式逆回购
+            - generic [ref=e112]: 热
+          - listitem [ref=e113]:
+            - link "6 警方通报“夫妻吃娃娃菜中毒”" [ref=e114] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E8%AD%A6%E6%96%B9%E9%80%9A%E6%8A%A5%E2%80%9C%E5%A4%AB%E5%A6%BB%E5%90%83%E5%A8%83%E5%A8%83%E8%8F%9C%E4%B8%AD%E6%AF%92%E2%80%9D&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e115]: "6"
+              - text: 警方通报“夫妻吃娃娃菜中毒”
+            - generic [ref=e116]: 新
+          - listitem [ref=e117]:
+            - link "2 为什么大型商超很少卖国产香蕉" [ref=e118] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E4%B8%BA%E4%BB%80%E4%B9%88%E5%A4%A7%E5%9E%8B%E5%95%86%E8%B6%85%E5%BE%88%E5%B0%91%E5%8D%96%E5%9B%BD%E4%BA%A7%E9%A6%99%E8%95%89&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e119]: "2"
+              - text: 为什么大型商超很少卖国产香蕉
+            - generic [ref=e120]: 新
+          - listitem [ref=e121]:
+            - link "7 “我叫张凤英 我不叫王张氏”" [ref=e122] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E2%80%9C%E6%88%91%E5%8F%AB%E5%BC%A0%E5%87%A4%E8%8B%B1+%E6%88%91%E4%B8%8D%E5%8F%AB%E7%8E%8B%E5%BC%A0%E6%B0%8F%E2%80%9D&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e123]: "7"
+              - text: “我叫张凤英 我不叫王张氏”
+          - listitem [ref=e125]:
+            - link "3 中国电力有多强" [ref=e126] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E4%B8%AD%E5%9B%BD%E7%94%B5%E5%8A%9B%E6%9C%89%E5%A4%9A%E5%BC%BA&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e127]: "3"
+              - text: 中国电力有多强
+          - listitem [ref=e129]:
+            - link "8 担心父亲继母争房产 30岁男子立遗嘱" [ref=e130] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E6%8B%85%E5%BF%83%E7%88%B6%E4%BA%B2%E7%BB%A7%E6%AF%8D%E4%BA%89%E6%88%BF%E4%BA%A7+30%E5%B2%81%E7%94%B7%E5%AD%90%E7%AB%8B%E9%81%97%E5%98%B1&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e131]: "8"
+              - text: 担心父亲继母争房产 30岁男子立遗嘱
+            - generic [ref=e132]: 热
+          - listitem [ref=e133]:
+            - link "4 即使穿着便衣 依旧气场全开" [ref=e134] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=%E5%8D%B3%E4%BD%BF%E7%A9%BF%E7%9D%80%E4%BE%BF%E8%A1%A3+%E4%BE%9D%E6%97%A7%E6%B0%94%E5%9C%BA%E5%85%A8%E5%BC%80&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e135]: "4"
+              - text: 即使穿着便衣 依旧气场全开
+            - generic [ref=e136]: 新
+          - listitem [ref=e137]:
+            - link "9 2026年中央一号文件发布" [ref=e138] [cursor=pointer]:
+              - /url: https://www.baidu.com/s?wd=2026%E5%B9%B4%E4%B8%AD%E5%A4%AE%E4%B8%80%E5%8F%B7%E6%96%87%E4%BB%B6%E5%8F%91%E5%B8%83&sa=fyb_n_homepage&rsv_dl=fyb_n_homepage&from=super&cl=3&tn=baidutop10&fr=top1000&rsv_idx=2&hisfilter=1
+              - generic [ref=e139]: "9"
+              - text: 2026年中央一号文件发布
+    - generic [ref=e142]:
+      - paragraph [ref=e143]:
+        - link "关于百度" [ref=e144] [cursor=pointer]:
+          - /url: //home.baidu.com
+      - paragraph [ref=e145]:
+        - link "About Baidu" [ref=e146] [cursor=pointer]:
+          - /url: http://ir.baidu.com
+      - paragraph [ref=e147]:
+        - link "使用百度前必读" [ref=e148] [cursor=pointer]:
+          - /url: //www.baidu.com/duty
+      - paragraph [ref=e149]:
+        - link "帮助中心" [ref=e150] [cursor=pointer]:
+          - /url: https://help.baidu.com/question?prod_id=1
+      - paragraph [ref=e151]:
+        - link "企业推广" [ref=e152] [cursor=pointer]:
+          - /url: https://e.baidu.com/?refer=1271
+      - paragraph [ref=e153]:
+        - link "京公网安备11000002000001号" [ref=e154] [cursor=pointer]:
+          - /url: http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002000001
+      - paragraph [ref=e155]:
+        - link "京ICP证030173号" [ref=e156] [cursor=pointer]:
+          - /url: https://beian.miit.gov.cn
+      - paragraph [ref=e157]: 互联网新闻信息服务许可证11220180008
+      - generic [ref=e158]: 11111111
+      - generic [ref=e159]: 
+  - generic [ref=e160]:
+    - generic:
+      - generic:
+        - generic:
+          - img
+    - img [ref=e165] [cursor=pointer]'''
+]
+
+res = text_embedder.similarity_matrix(sentences)
+print(res)
