@@ -115,6 +115,27 @@ class WebsiteGraph:
         table = "\n".join([header, separator] + rows)
         return table
 
+    def query_similarity_to_table(self, query: str) -> str:
+        if not self.nodes:
+            return "No nodes available"
+        node_ids = sorted(self.nodes.keys())
+        embeddings = [self.nodes[node_id]["snapshot_embedding"] for node_id in node_ids]
+        similarities = self.text_embedder.similarity_to_many(query, embeddings)
+        max_id_len = max(len(str(node_id)) for node_id in node_ids)
+        id_width = max(max_id_len, 4)
+        sim_width = 10
+        header = f"| {'Node':^{id_width}} | {'Similarity':^{sim_width}} |"
+        separator = f"|{'-' * (id_width + 2)}|{'-' * (sim_width + 2)}|"
+        rows = []
+        sorted_indices = np.argsort(similarities)[::-1]
+        for idx in sorted_indices:
+            node_id = node_ids[idx]
+            sim_value = similarities[idx]
+            row = f"| {str(node_id):^{id_width}} | {sim_value:^{sim_width}.4f} |"
+            rows.append(row)
+        table = "\n".join([header, separator] + rows)
+        return table
+
 
 if __name__ == "__main__":
     graph = WebsiteGraph(scope="example.com")
@@ -136,5 +157,8 @@ if __name__ == "__main__":
     graph.update_edge(from_id=node1_id, to_id=node2_id, operation="link")
     print(graph.to_yaml())
 
-    print("\n")
+    print("\n=== Similarity Matrix ===")
     print(graph.similarity_matrix_to_table())
+
+    print("\n=== Query Similarity ===")
+    print(graph.query_similarity_to_table("Test"))
