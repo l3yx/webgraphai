@@ -11,7 +11,6 @@ class Playwright:
         self._browser = browser
 
     def __enter__(self):
-        self.run("tab-list")
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
