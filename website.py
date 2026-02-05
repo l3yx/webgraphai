@@ -2,6 +2,7 @@ from typing import Dict, List, Tuple
 import yaml
 import numpy as np
 from embedder import TextEmbedder
+from util import Util
 
 
 class WebsiteGraph:
@@ -11,7 +12,8 @@ class WebsiteGraph:
         self.nodes: Dict[int, dict] = {}
         self.edges: Dict[int, dict] = {}
         self._next_id: int = 0
-        self.text_embedder = TextEmbedder()
+        self.text_embedder = TextEmbedder(
+            "sentence-transformers/all-MiniLM-L6-v2")
 
     def _get_next_id(self) -> int:
         self._next_id += 1
@@ -41,6 +43,9 @@ class WebsiteGraph:
             default_flow_style=False,
         )
 
+    def update_summary(self, summary: str) -> None:
+        self.summary = summary
+
     def add_node(self, url: str, title: str, snapshot: str) -> int:
         id = self._get_next_id()
         node = {
@@ -48,7 +53,7 @@ class WebsiteGraph:
             "url": url,
             "title": title,
             "snapshot": snapshot,
-            "snapshot_hex": self.text_embedder.get_text_hex_prefix(snapshot),
+            "snapshot_hex": Util.get_text_hex_prefix(snapshot),
             "snapshot_embedding": self.text_embedder.encode(snapshot),
             "desc": "",
             "features": [],
@@ -66,7 +71,8 @@ class WebsiteGraph:
     def update_node(self, id: int, property: str, value: str | List[str]) -> None:
         if id in self.nodes:
             if property not in ['desc', 'features', 'datas']:
-                raise ValueError("Can only update 'desc', 'features', or 'datas' properties.")
+                raise ValueError(
+                    "Can only update 'desc', 'features', or 'datas' properties.")
             self.nodes[id][property] = value
 
     def update_edge(self, from_id: int, to_id: int, operation: str) -> None:
@@ -89,7 +95,8 @@ class WebsiteGraph:
         if not self.nodes:
             return np.array([]), []
         node_ids = sorted(self.nodes.keys())
-        embeddings = [self.nodes[node_id]["snapshot_embedding"] for node_id in node_ids]
+        embeddings = [self.nodes[node_id]["snapshot_embedding"]
+                      for node_id in node_ids]
         similarity_matrix = self.text_embedder.similarity_matrix(embeddings)
         return similarity_matrix, node_ids
 
@@ -119,7 +126,8 @@ class WebsiteGraph:
         if not self.nodes:
             return "No nodes available"
         node_ids = sorted(self.nodes.keys())
-        embeddings = [self.nodes[node_id]["snapshot_embedding"] for node_id in node_ids]
+        embeddings = [self.nodes[node_id]["snapshot_embedding"]
+                      for node_id in node_ids]
         similarities = self.text_embedder.similarity_to_many(query, embeddings)
         max_id_len = max(len(str(node_id)) for node_id in node_ids)
         id_width = max(max_id_len, 4)
@@ -136,6 +144,19 @@ class WebsiteGraph:
         table = "\n".join([header, separator] + rows)
         return table
 
+    def to_readable(self):
+        return f'''
+Graph:
+```
+{self.to_yaml()}
+```
+
+Snapshot Similarity Matrix:
+```
+{self.similarity_matrix_to_table()}
+```
+'''.strip()
+
 
 if __name__ == "__main__":
     graph = WebsiteGraph(scope="example.com")
@@ -147,7 +168,7 @@ if __name__ == "__main__":
     node2_id = graph.add_node(
         url="http://example.com/page2",
         title="Page 2",
-        snapshot="你好"
+        snapshot="测试"
     )
     node3_id = graph.add_node(
         url="http://example.com/page3",

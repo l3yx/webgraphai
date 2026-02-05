@@ -1,5 +1,4 @@
 from typing import List
-import hashlib
 from sentence_transformers import SentenceTransformer
 import numpy as np
 
@@ -68,8 +67,3 @@ class TextEmbedder:
             text_embeddings = np.array(texts)
         scores = text_embeddings @ query_emb
         return np.clip(scores, -1.0, 1.0)
-
-    def get_text_hex_prefix(self, text: str, length: int = 8) -> str:
-        md5 = hashlib.md5(text.encode('utf-8'))
-        hex_digest = md5.hexdigest()
-        return hex_digest[:length]
