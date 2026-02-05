@@ -32,6 +32,22 @@ class Playwright:
             return match.group(0)
         return re.sub(pattern, replace_ref, text)
 
+    def read_file(self, file_path: str, line: int | None = None) -> str:
+        path = Path(file_path)
+        if not path.exists():
+            raise FileNotFoundError(f"File not found: {file_path}")
+        try:
+            content = path.read_text()
+            if line is None:
+                return content
+            lines = content.splitlines()
+            if 1 <= line <= len(lines):
+                return lines[line - 1]
+            raise IndexError(
+                f"Line {line} out of range for file with {len(lines)} lines.")
+        except Exception as e:
+            raise RuntimeError(f"Failed to read file {file_path}: {e}")
+
     def run(self, *args: str) -> str:
         cmd = ["playwright-cli", f"--session={self._session_name}"]
         if self._headed:
@@ -57,6 +73,8 @@ if __name__ == "__main__":
     import time
 
     with Playwright(headed=True) as pw:
+        print(pw.read_file(".playwright-cli/console-2026-02-05T12-28-46-774Z.log", 1))
+
         print(f"Session: {pw._session_name}")
 
         output = pw.run("open", "https://www.example.com")
