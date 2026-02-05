@@ -1,5 +1,7 @@
+playwright-cli --session=example tab-list --headed
+
 playwright-cli --session=example tracing-start --headed
-playwright-cli --session=example open https://example.com
+playwright-cli --session=example open https://example.com  --headed
 playwright-cli --session=example tracing-stop
 
 
@@ -15,6 +17,8 @@ playwright-cli --session=example tracing-stop
 playwright-cli --session=example session-stop example
 
 playwright-cli --session=example session-delete example
+
+playwright-cli --session=example tab-new
 
 
 
