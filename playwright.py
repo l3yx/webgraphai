@@ -56,6 +56,7 @@ if __name__ == "__main__":
     import time
 
     with Playwright(headed=True) as pw:
+        print(pw.read_file(".playwright-cli/console-2026-02-05T12-28-46-774Z.log", 1))
 
         print(f"Session: {pw._session_name}")
 

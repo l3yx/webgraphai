@@ -12,8 +12,7 @@ class WebsiteGraph:
         self.nodes: Dict[int, dict] = {}
         self.edges: Dict[int, dict] = {}
         self._next_id: int = 0
-        self.text_embedder = TextEmbedder(
-            "sentence-transformers/all-MiniLM-L6-v2")
+        self.text_embedder = TextEmbedder()
 
     def _get_next_id(self) -> int:
         self._next_id += 1
@@ -168,7 +167,7 @@ if __name__ == "__main__":
     node2_id = graph.add_node(
         url="http://example.com/page2",
         title="Page 2",
-        snapshot="测试"
+        snapshot="你好"
     )
     node3_id = graph.add_node(
         url="http://example.com/page3",
